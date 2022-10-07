@@ -7,15 +7,18 @@
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Year', 'Sales', 'Expenses'],
-            ['2004',  1000,      400],
-            ['2005',  1170,      460],
-            ['2006',  660,       1120],
-            ['2007',  1030,      540]
+            ['Day', 'Speed (km/h)'],
+            ['Monday',  50],
+            ['Tuesday', 40],
+            ['Wednesday', 66],
+            ['Thursday', 0],
+            ['Friday',54],
+            ['Saturday',62],
+            ['Sunday', 0],
         ]);
 
         var options = {
-            title: 'Company Performance',
+            title: 'Athlete Performance',
             curveType: 'function',
             legend: { position: 'bottom' }
         };
