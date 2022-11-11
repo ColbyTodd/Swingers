@@ -14,9 +14,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void OnLoginButton(View view) {
+    public void onLoginButton(View view) {
         //Application Context and Activity
-        Intent intent = new Intent(getApplicationContext(), DataDisplay.class);
+        Intent intent = new Intent(this, DataDisplay.class);
         startActivity(intent);
     }
 }
