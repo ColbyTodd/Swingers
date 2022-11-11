@@ -122,7 +122,7 @@ public class BluetoothConnect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Move to adapter list
-                Intent intent = new Intent(MainActivity.this, SelectDeviceActivity.class);
+                Intent intent = new Intent(BluetoothConnect.this, SelectDeviceActivity.class);
                 startActivity(intent);
             }
         });

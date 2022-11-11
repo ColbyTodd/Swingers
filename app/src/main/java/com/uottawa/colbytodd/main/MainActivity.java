@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onLoginButton(View view) {
         //Application Context and Activity
-        Intent intent = new Intent(this, DataDisplay.class);
+        Intent intent = new Intent(this, BluetoothConnect.class);
         startActivity(intent);
     }
 }
