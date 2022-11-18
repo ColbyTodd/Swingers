@@ -5,11 +5,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -31,6 +33,7 @@ import static android.content.ContentValues.TAG;
 
 public class BluetoothConnect extends AppCompatActivity {
 
+    private static final int REQUEST_ENABLE_BT = 0;
     private String deviceName = null;
     private String deviceAddress;
     public static Handler handler;
@@ -56,6 +59,17 @@ public class BluetoothConnect extends AppCompatActivity {
         buttonToggle.setEnabled(false);
         final ImageView imageView = findViewById(R.id.imageView);
         imageView.setBackgroundColor(getResources().getColor(R.color.black));
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            String[] permissions = new String[2];
+            permissions[0] = Manifest.permission.BLUETOOTH_SCAN;
+            permissions[1] = Manifest.permission.BLUETOOTH_CONNECT;
+            requestPermissions(permissions, 1);
+        } else {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        }
+
 
         // If a bluetooth device has been selected from SelectDeviceActivity
         deviceName = getIntent().getStringExtra("deviceName");
@@ -122,6 +136,7 @@ public class BluetoothConnect extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // Move to adapter list
+
                 Intent intent = new Intent(BluetoothConnect.this, SelectDeviceActivity.class);
                 startActivity(intent);
             }
